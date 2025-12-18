@@ -88,20 +88,19 @@
     </left>
     
     <!-- Main Content Area -->
-    <center>
-        <StackPane fx:id="contentArea">
-            <!-- Default Welcome Content -->
-            <VBox alignment="CENTER" spacing="20">
-                <Label text="Welcome to Gym Management System" 
-                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
-                <Label fx:id="welcomeMessage" 
-                       style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d;"/>
-                <ImageView>
-                    <Image url="@/com/gym/welcome.png"/>
-                </ImageView>
-            </VBox>
-        </StackPane>
-    </center>
+<center>
+    <StackPane fx:id="contentArea">
+        <!-- Default Welcome Content -->
+        <VBox alignment="CENTER" spacing="20">
+            <Label text="Welcome to Gym Management System" 
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            <Label fx:id="welcomeMessage" 
+                   style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d;"/>
+            <!-- Removed ImageView that was causing the error -->
+            <Label text="🏋️" style="-fx-font-size: 48px;"/>
+        </VBox>
+    </StackPane>
+</center>
     
     <!-- Status Bar -->
     <bottom>

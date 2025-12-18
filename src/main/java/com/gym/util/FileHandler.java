@@ -77,14 +77,61 @@ public class FileHandler {
         return null;
     }
     
-    // Add new user
-    public static boolean addUser(String username, String password, String role, String branch) {
-        if (findUser(username) != null) {
-            return false; // Username exists
-        }
-        String userData = String.join(",", username, password, role, branch);
-        return writeLine("users.txt", userData);
+    // Add new user with validation
+public static boolean addUser(String username, String password, String role, String branch) {
+    if (findUser(username) != null) {
+        System.out.println("Username already exists: " + username);
+        return false; // Username exists
     }
+    
+    // Validate input
+    if (username == null || username.trim().isEmpty() || 
+        password == null || password.trim().isEmpty() ||
+        role == null || role.trim().isEmpty() ||
+        branch == null || branch.trim().isEmpty()) {
+        System.out.println("Invalid user data provided");
+        return false;
+    }
+    
+    String userData = String.join(",", 
+        username.trim(), 
+        password.trim(), 
+        role.trim(), 
+        branch.trim()
+    );
+    
+    boolean success = writeLine("users.txt", userData);
+    if (success) {
+        System.out.println("User created: " + username + " (" + role + ") at " + branch);
+    }
+    return success;
+}
+
+// Get all users (for debugging)
+public static List<String> getAllUsers() {
+    return readAllLines("users.txt");
+}
+
+// Delete user (admin only)
+public static boolean deleteUser(String username) {
+    List<String> users = readAllLines("users.txt");
+    List<String> updatedUsers = new ArrayList<>();
+    boolean found = false;
+    
+    for (String user : users) {
+        String[] parts = parseCSV(user);
+        if (parts.length >= 1 && parts[0].equals(username)) {
+            found = true;
+            continue; // Skip this user (delete)
+        }
+        updatedUsers.add(user);
+    }
+    
+    if (found) {
+        return saveAll("users.txt", updatedUsers);
+    }
+    return false;
+}
     
     // Get all branches
     public static List<String> getBranches() {

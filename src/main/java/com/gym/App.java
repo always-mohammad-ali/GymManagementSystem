@@ -10,6 +10,8 @@ public class App extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
+        System.out.println("🚀 Starting Gym Management System...");
+        
         // Initialize data directory
         initializeDataFiles();
         
@@ -17,7 +19,11 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gym/login.fxml"));
         Parent root = loader.load();
         
-        Scene scene = new Scene(root);
+        // Pass stage to controller
+        com.gym.controller.LoginController controller = loader.getController();
+        controller.setStage(primaryStage);
+        
+        Scene scene = new Scene(root, 900, 650);
         
         // Set stage properties
         primaryStage.setTitle("🏋️ Gym Management System");
@@ -27,6 +33,8 @@ public class App extends Application {
         primaryStage.show();
         
         System.out.println("✅ Application started successfully!");
+        System.out.println("👤 Default Admin: admin/admin123 (Downtown Branch)");
+        System.out.println("👤 Default Member: john/john123 (Uptown Branch)");
     }
     
     private void initializeDataFiles() {
@@ -36,7 +44,7 @@ public class App extends Application {
                 dataDir.mkdirs();
                 System.out.println("📁 Created data directory");
                 
-                // Create branches file
+                // Create branches file with more details
                 java.nio.file.Files.write(
                     java.nio.file.Paths.get("data/branches.txt"),
                     java.util.Arrays.asList(
@@ -47,14 +55,14 @@ public class App extends Application {
                     )
                 );
                 
-                // Create users file
+                // Create users file with admin and members
                 java.nio.file.Files.write(
                     java.nio.file.Paths.get("data/users.txt"),
                     java.util.Arrays.asList(
                         "admin,admin123,Admin,Downtown Branch",
                         "john,john123,Member,Uptown Branch",
                         "sarah,sarah123,Member,Downtown Branch",
-                        "mike,mike123,Member,Westside Branch"
+                        "coach1,coach123,Admin,Westside Branch"
                     )
                 );
                 
@@ -62,9 +70,10 @@ public class App extends Application {
                 java.nio.file.Files.write(
                     java.nio.file.Paths.get("data/members.txt"),
                     java.util.Arrays.asList(
-                        "M001,John Doe,555-1001,9AM-11AM,Active,Downtown Branch,2024-01-15",
+                        "M001,John Doe,555-1001,9AM-11AM,Active,Uptown Branch,2024-01-15",
                         "M002,Sarah Smith,555-1002,11AM-1PM,Active,Downtown Branch,2024-02-01",
-                        "M003,Mike Johnson,555-1003,3PM-5PM,Active,Westside Branch,2024-01-20"
+                        "M003,Mike Johnson,555-1003,3PM-5PM,Active,Westside Branch,2024-01-20",
+                        "M004,Emily Davis,555-1004,5PM-7PM,Active,Downtown Branch,2024-01-25"
                     )
                 );
                 
@@ -84,13 +93,14 @@ public class App extends Application {
                     java.util.Arrays.asList(
                         "M001,John Doe,50,2024-01-15,Paid",
                         "M002,Sarah Smith,50,2024-02-01,Paid",
-                        "M003,Mike Johnson,55,2024-01-20,Unpaid"
+                        "M003,Mike Johnson,55,2024-01-20,Unpaid",
+                        "M004,Emily Davis,50,2024-01-25,Paid"
                     )
                 );
                 
                 System.out.println("📄 Sample data files created");
-                System.out.println("👤 Default Admin: admin/admin123");
-                System.out.println("👤 Default Member: john/john123");
+            } else {
+                System.out.println("📁 Data directory already exists");
             }
         } catch (Exception e) {
             System.err.println("❌ Error initializing data files: " + e.getMessage());
@@ -98,6 +108,13 @@ public class App extends Application {
     }
     
     public static void main(String[] args) {
+        System.out.println("🎯 Gym Management System v1.0");
+        System.out.println("📋 Features:");
+        System.out.println("  • File-based storage (no database)");
+        System.out.println("  • Multi-branch support");
+        System.out.println("  • Three user roles: Admin, Member, Guest");
+        System.out.println("  • Role-based access control");
+        System.out.println("  • Signup/Login system");
         launch(args);
     }
 }

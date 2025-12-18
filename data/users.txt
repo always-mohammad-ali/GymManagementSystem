@@ -2,3 +2,4 @@ admin,admin123,Admin,Downtown Branch
 john,john123,Member,Uptown Branch
 sarah,sarah123,Member,Downtown Branch
 mike,mike123,Member,Westside Branch
+ali,123456,Member,Westside Branch

@@ -1,38 +1,45 @@
 package com.gym.controller;
 
+import java.io.IOException;
+
 import com.gym.model.User;
 import com.gym.util.FileHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class LoginController {
     @FXML private TextField usernameField;
     @FXML private PasswordField passwordField;
     @FXML private CheckBox rememberMe;
     @FXML private Label errorLabel;
-    @FXML private Button loginButton;
-    @FXML private Button signupButton;
-    @FXML private Button guestButton;
     
     private Stage stage;
     
     @FXML
     public void initialize() {
         // Clear error when user starts typing
-        usernameField.textProperty().addListener((obs, old, newVal) -> errorLabel.setText(""));
-        passwordField.textProperty().addListener((obs, old, newVal) -> errorLabel.setText(""));
+        usernameField.textProperty().addListener((obs, old, newVal) -> clearError());
+        passwordField.textProperty().addListener((obs, old, newVal) -> clearError());
+        
+        // Set default credentials for testing
+        usernameField.setText("admin");
+        passwordField.setText("admin123");
     }
     
     @FXML
     private void handleLogin() {
         String username = usernameField.getText().trim();
         String password = passwordField.getText().trim();
+        
+        System.out.println("Login attempt: " + username);
         
         // Validation
         if (username.isEmpty() || password.isEmpty()) {
@@ -45,6 +52,7 @@ public class LoginController {
         if (userData != null && userData[1].equals(password)) {
             // Successful login
             User user = new User(userData[0], userData[1], userData[2], userData[3]);
+            System.out.println("Login successful: " + user.getRole() + " at " + user.getBranch());
             openDashboard(user);
         } else {
             showError("Invalid username or password");
@@ -53,6 +61,7 @@ public class LoginController {
     
     @FXML
     private void handleSignup() {
+        System.out.println("Opening signup form...");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/gym/signup.fxml"));
             Parent root = loader.load();
@@ -64,13 +73,14 @@ public class LoginController {
             stage.setScene(scene);
             stage.centerOnScreen();
         } catch (IOException e) {
-            showError("Cannot load signup form: " + e.getMessage());
+            showError("Cannot load signup form");
             e.printStackTrace();
         }
     }
     
     @FXML
     private void handleGuestLogin() {
+        System.out.println("Guest login...");
         // Create guest user
         User guest = new User("Guest", "", "Guest", "All Branches");
         openDashboard(guest);
@@ -88,11 +98,10 @@ public class LoginController {
             
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("Gym Management System - Dashboard");
+            stage.setTitle("Gym Management System - " + user.getRole() + " Dashboard");
             stage.centerOnScreen();
             
-            // Show success message
-            System.out.println("✅ Login successful for: " + user.getUsername());
+            System.out.println("✅ Dashboard opened for: " + user.getUsername());
         } catch (IOException e) {
             showError("Cannot load dashboard: " + e.getMessage());
             e.printStackTrace();
@@ -104,9 +113,8 @@ public class LoginController {
         errorLabel.setStyle("-fx-text-fill: #e74c3c;");
     }
     
-    private void showSuccess(String message) {
-        errorLabel.setText(message);
-        errorLabel.setStyle("-fx-text-fill: #2ecc71;");
+    private void clearError() {
+        errorLabel.setText("");
     }
     
     public void setStage(Stage stage) {

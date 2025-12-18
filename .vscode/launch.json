@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "com.gym.App",
+            "projectName": "GymManagementSystem"
+        },
+        {
+            "type": "java",
+            "name": "Launch with Maven",
+            "request": "launch",
+            "mainClass": "com.gym.App",
+            "vmArgs": "--module-path ${env:PATH_TO_FX} --add-modules javafx.controls,javafx.fxml",
+            "projectName": "GymManagementSystem"
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+Downtown Branch,123 Main St,555-0101,$50/month
+Uptown Branch,456 Oak Ave,555-0102,$60/month
+Westside Branch,789 Pine Rd,555-0103,$55/month
+Eastside Branch,321 Elm Blvd,555-0104,$65/month

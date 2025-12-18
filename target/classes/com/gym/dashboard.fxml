@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gym.controller.DashboardController"
+            style="-fx-background-color: #ecf0f1;"
+            prefWidth="1000" prefHeight="700">
+    
+    <!-- Top Bar -->
+    <top>
+        <HBox style="-fx-background-color: #2c3e50; -fx-padding: 15 20;" 
+              alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="🏋️" style="-fx-font-size: 24px;"/>
+                <Label text="Gym Management System" 
+                       style="-fx-text-fill: white; -fx-font-size: 20px; -fx-font-weight: bold;"/>
+            </HBox>
+            
+            <HBox alignment="CENTER_RIGHT" spacing="20" HBox.hgrow="ALWAYS">
+                <Label fx:id="userInfoLabel" 
+                       style="-fx-text-fill: white; -fx-font-size: 14px;"/>
+                <Button fx:id="logoutButton" text="Logout" 
+                       onAction="#handleLogout"
+                       style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;"/>
+            </HBox>
+        </HBox>
+    </top>
+    
+    <!-- Sidebar -->
+    <left>
+        <VBox fx:id="sidebar" spacing="10" 
+              style="-fx-background-color: #34495e; -fx-padding: 20;" 
+              prefWidth="220">
+            
+            <Label text="Navigation" 
+                   style="-fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-padding: 0 0 10 0;"/>
+            
+            <Separator style="-fx-background-color: #5d6d7e;"/>
+            
+            <!-- Admin/Member Navigation -->
+            <Button fx:id="dashboardBtn" text="📊 Dashboard" 
+                   onAction="#showDashboard"
+                   style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER_LEFT; -fx-pref-height: 40px; -fx-pref-width: 180px;"/>
+            
+            <Button fx:id="manageMembersBtn" text="👥 Manage Members" 
+                   onAction="#showManageMembers"
+                   style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER_LEFT; -fx-pref-height: 40px; -fx-pref-width: 180px;"/>
+            
+            <Button fx:id="manageCoachesBtn" text="💪 Manage Coaches" 
+                   onAction="#showManageCoaches"
+                   style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER_LEFT; -fx-pref-height: 40px; -fx-pref-width: 180px;"/>
+            
+            <Button fx:id="myProfileBtn" text="👤 My Profile" 
+                   onAction="#showMyProfile"
+                   style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER_LEFT; -fx-pref-height: 40px; -fx-pref-width: 180px;"/>
+            
+            <Button fx:id="gymInfoBtn" text="🏢 Gym Info" 
+                   onAction="#showGymInfo"
+                   style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-size: 14px; -fx-alignment: CENTER_LEFT; -fx-pref-height: 40px; -fx-pref-width: 180px;"/>
+            
+            <Separator style="-fx-background-color: #5d6d7e;"/>
+            
+            <!-- Quick Stats (Admin Only) -->
+            <VBox fx:id="quickStatsBox" spacing="5" visible="false">
+                <Label text="Quick Stats" 
+                       style="-fx-text-fill: #bdc3c7; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+                <Label fx:id="memberCountLabel" 
+                       style="-fx-text-fill: white; -fx-font-size: 11px;"/>
+                <Label fx:id="coachCountLabel" 
+                       style="-fx-text-fill: white; -fx-font-size: 11px;"/>
+            </VBox>
+            
+            <Separator style="-fx-background-color: #5d6d7e;"/>
+            
+            <!-- Branch Info -->
+            <VBox spacing="5">
+                <Label text="Current Branch" 
+                       style="-fx-text-fill: #bdc3c7; -fx-font-size: 12px; -fx-font-weight: bold;"/>
+                <Label fx:id="branchLabel" 
+                       style="-fx-text-fill: white; -fx-font-size: 13px; -fx-font-weight: bold;"/>
+            </VBox>
+        </VBox>
+    </left>
+    
+    <!-- Main Content Area -->
+    <center>
+        <StackPane fx:id="contentArea">
+            <!-- Default Welcome Content -->
+            <VBox alignment="CENTER" spacing="20">
+                <Label text="Welcome to Gym Management System" 
+                       style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <Label fx:id="welcomeMessage" 
+                       style="-fx-font-size: 16px; -fx-text-fill: #7f8c8d;"/>
+                <ImageView>
+                    <Image url="@/com/gym/welcome.png"/>
+                </ImageView>
+            </VBox>
+        </StackPane>
+    </center>
+    
+    <!-- Status Bar -->
+    <bottom>
+        <HBox style="-fx-background-color: #2c3e50; -fx-padding: 5 20;" 
+              alignment="CENTER">
+            <Label fx:id="statusLabel" text="Ready" 
+                   style="-fx-text-fill: #bdc3c7; -fx-font-size: 12px;"/>
+        </HBox>
+    </bottom>
+</BorderPane>

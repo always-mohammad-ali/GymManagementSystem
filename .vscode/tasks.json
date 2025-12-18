@@ -1,0 +1,19 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "mvn clean compile",
+            "type": "shell",
+            "command": "mvn clean compile",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "mvn javafx:run",
+            "type": "shell",
+            "command": "mvn javafx:run",
+            "group": "build",
+            "problemMatcher": []
+        }
+    ]
+}

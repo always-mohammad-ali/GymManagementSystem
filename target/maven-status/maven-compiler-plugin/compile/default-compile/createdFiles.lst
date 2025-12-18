@@ -1,0 +1,10 @@
+com\gym\controller\LoginController.class
+com\gym\model\Member.class
+com\gym\model\Coach.class
+com\gym\App.class
+com\gym\controller\SignupController.class
+com\gym\model\User.class
+com\gym\TestApp.class
+com\gym\controller\DashboardController.class
+com\gym\model\Payment.class
+com\gym\util\FileHandler.class

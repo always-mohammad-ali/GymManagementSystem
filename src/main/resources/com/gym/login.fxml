@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.2-ea" 
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.gym.controller.LoginController"
+            style="-fx-background-color: linear-gradient(to bottom, #2c3e50, #3498db);"
+            prefWidth="800" prefHeight="600">
+    
+    <center>
+        <VBox alignment="CENTER" spacing="20">
+            <!-- Logo/Title -->
+            <VBox alignment="CENTER" spacing="5">
+                <Label text="🏋️" style="-fx-font-size: 48px;"/>
+                <Label text="Gym Management System" 
+                       style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                <Label text="Manage Your Gym Efficiently" 
+                       style="-fx-font-size: 14px; -fx-text-fill: #ecf0f1;"/>
+            </VBox>
+            
+            <!-- Login Card -->
+            <VBox style="-fx-background-color: white; -fx-background-radius: 10; -fx-padding: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 10, 0, 0, 0);"
+                  alignment="CENTER" spacing="15">
+                
+                <Label text="Login to Your Account" 
+                       style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                
+                <VBox spacing="10" style="-fx-min-width: 300;">
+                    <Label text="Username:" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="usernameField" 
+                              promptText="Enter your username"
+                              style="-fx-pref-height: 40px; -fx-font-size: 14px;"/>
+                    
+                    <Label text="Password:" style="-fx-font-weight: bold;"/>
+                    <PasswordField fx:id="passwordField" 
+                                  promptText="Enter your password"
+                                  style="-fx-pref-height: 40px; -fx-font-size: 14px;"/>
+                    
+                    <CheckBox fx:id="rememberMe" text="Remember me"/>
+                    
+                    <Button fx:id="loginButton" text="Login" 
+                           onAction="#handleLogin"
+                           style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 40px; -fx-font-size: 16px; -fx-background-radius: 5;"
+                           maxWidth="Infinity"/>
+                    
+                    <Label fx:id="errorLabel" 
+                           style="-fx-text-fill: #e74c3c; -fx-font-size: 12px;" 
+                           wrapText="true"/>
+                    
+                    <Separator/>
+                    
+                    <Button fx:id="signupButton" text="Create New Account" 
+                           onAction="#handleSignup"
+                           style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 40px; -fx-font-size: 16px; -fx-background-radius: 5;"
+                           maxWidth="Infinity"/>
+                    
+                    <Button fx:id="guestButton" text="Continue as Guest" 
+                           onAction="#handleGuestLogin"
+                           style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 40px; -fx-font-size: 16px; -fx-background-radius: 5;"
+                           maxWidth="Infinity"/>
+                </VBox>
+            </VBox>
+            
+            <!-- Footer -->
+            <Label text="© 2024 Gym Management System | File-Based Multi-Branch Solution" 
+                   style="-fx-text-fill: #ecf0f1; -fx-font-size: 12px;"/>
+        </VBox>
+    </center>
+</BorderPane>

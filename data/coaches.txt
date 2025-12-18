@@ -1,0 +1,3 @@
+C001,Alex Trainer,Yoga,555-2001,Downtown Branch
+C002,Emma Coach,Weightlifting,555-2002,Uptown Branch
+C003,David Instructor,Cardio,555-2003,Westside Branch
